@@ -380,7 +380,7 @@ def load_config():
             + get_string('ask_username')
             + Fore.RESET + Style.BRIGHT)
 
-        if ossystem('i2cdetect -y 1') is not 0 :
+        if ossystem('i2cdetect -y 0') != 0 :
             print(Style.RESET_ALL + Fore.RED
                     + 'I2C is disabled. Exiting..')
         else :
@@ -959,7 +959,7 @@ if __name__ == '__main__':
             debug_output(f'Error launching donation thread: {e}')
 
     try:
-        i2c_bus = SMBus(1)
+        i2c_bus = SMBus(0)
         fastest_pool = Client.fetch_pool()
         threadid = 0
         for port in avrport:
